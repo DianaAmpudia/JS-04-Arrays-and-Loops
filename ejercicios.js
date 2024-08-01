@@ -1,5 +1,4 @@
-/*
-* === 1. Sum of Resistors in Series ===
+/* === 1. Sum of Resistors in Series ===
 Calculate the sum of all resistors connected in series.
 Examples:
 - `sumResitance([-1,5,6,3])` should return `"15 ohms"`. (|−1| + 5 + 6 + 3 = 15)
@@ -7,8 +6,7 @@ Examples:
 - `sumResitance([8,15,100])` should return `'123 ohms'`. (8 + 15 + 100 = 123)
 
 Note: This approach uses the absolute value of each resistance to ensure all values
-are positive.
-*/
+are positive. */
 
 function sumResitance(resistors){
     let resistanceSum = 0;
@@ -27,46 +25,36 @@ function sumResitance(resistors){
 }
 */
 
-//* Test cases
+// Test cases
 
-console.log(sumResitance([-1,5,6,3])); // should return "15 ohms"
-console.log(sumResitance([14,3.5,6])); // should return "23.5 ohms"
-console.log(sumResitance([8,15,100])); // should return "123 ohms"
+console.log(sumResitance([-1,5,6,3])); // "15 ohms"
+console.log(sumResitance([14,3.5,6])); // "23.5 ohms"
+console.log(sumResitance([8,15,100])); // "123 ohms"
 
-/*
-* === 2. Number divided into halves === 
+/* === 2. Number divided into halves === 
 Given a number, return the number divided into its halves in an array.
 
 Examples:
 - `numDiv(4)` should return `[2, 2]`.
-- `numDiv(10)` should return `[5, 5]`.
-
--tomar el numero que se ingreso
--dividirlo en dos partes iguales 
--Se crea un array con las dos partes
-
-*/
+- `numDiv(10)` should return `[5, 5]`. */
 
 const numDiv = (num) => {
     const halfNum = num / 2;
     return [halfNum, halfNum];
 }
 
-//* Test cases
-console.log(numDiv(4)); // should return [2, 2]
-console.log(numDiv(10)); // should return [5, 5]
+// Test cases
+console.log(numDiv(4)); // [2, 2]
+console.log(numDiv(10)); // [5, 5]
 
-
-/*
-* === 3. Secret Society ===
+/* === 3. Secret Society ===
 
 Find the name of a secret society based on the first letter of each member's name.
  
 Examples:
 - `secretName(["Esperanza", "Franco", "Nia"])` should return `'EFN'`.
 - `secretName(['Phoebe', 'Ross', 'Chandler', 'Joey', 'Monica', 'Rachel'])` should return `'CJMPRR'`.
-- `secretName(['Harry', 'Ron', 'Hermione'])` should return `'HHR'`.
-*/
+- `secretName(['Harry', 'Ron', 'Hermione'])` should return `'HHR'`. */
 
 function secretName(names) {
     let secretName = '';
@@ -76,16 +64,62 @@ function secretName(names) {
     return secretName;
 }
 
-/*
-This is another approach using map method. When we use map, it creates a new array. Map goes through each element of the array and applies the function to it.
-As map proceesses each element, it adds the result to a new array. The original array remains unchanged.
+/* This is another approach using map method. When we use map, it creates a new array. Map
+goes through each element of the array and applies the function to it. As map proceesses
+ each element, it adds the result to a new array. The original array remains unchanged.
 
 function secretName(names) {
     return names.map(name => name[0]).join('');
 }
 */
 
-//* Test cases
-console.log(secretName(["Esperanza", "Franco", "Nia"])); // should return "EFN"
-console.log(secretName(['Phoebe', 'Ross', 'Chandler', 'Joey', 'Monica', 'Rachel'])); // should return "CJMPRR"
-console.log(secretName(['Harry', 'Ron', 'Hermione'])); // should return "HHR"
+// Test cases
+console.log(secretName(["Esperanza", "Franco", "Nia"])); // "EFN"
+console.log(secretName(['Phoebe', 'Ross', 'Chandler', 'Joey', 'Monica', 'Rachel'])); // "PRCJMR"
+console.log(secretName(['Harry', 'Ron', 'Hermione'])); // "HRH"
+
+/* === 4. Online Status ===
+Display online status for a list of users.
+ 
+Example:
+- `onlineStatus(['mockIng99', 'J0eyPunch', 'glassedFer'])` should return `'mockIng99, J0eyPunch and 1 more online'`.
+*/
+
+// Each case automatically breaks after the return statement, that's why we don't need explicit break statements.
+function onlineStatus(users) {
+    switch (users.length) {
+        case 0:
+            return "No one is online";
+        case 1:
+            return `${users[0]} is online`;
+        case 2:
+            return `${users[0]} and ${users[1]} are online`;
+        default:
+            return `${users[0]}, ${users[1]} and ${users.length - 2} more online`;
+    }
+}
+
+console.log(onlineStatus(['mockIng99', 'J0eyPunch', 'glassedFer'])); // mockIng99, J0eyPunch and 1 more online
+console.log(onlineStatus(['mockIng99'])); // mockIng99 is online
+
+/* === Array of Multiples ===
+Create a function that takes two parameters (number, length) and returns
+ an array of length containing multiples of the number.
+ 
+Examples:
+- `arrayMultiplos(2, 10)` should return `[2, 4, 6, 8, 10, 12, 14, 16, 18, 20]`.
+- `arrayMultiplos(17, 6)` should return `[17, 34, 51, 68, 85, 102]`. */
+
+function arrayMultiplos(num, length) {
+    let multiples = [];
+    for (let i = 1; i <= length; i++) {
+        multiples.push(num * i);
+    }
+    return multiples;
+}
+
+// Test cases
+console.log(arrayMultiplos(2, 10)); // [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+console.log(arrayMultiplos(17, 6)); // [17, 34, 51, 68, 85, 102]
+console.log(arrayMultiplos(3, 4)); // [3, 6, 9, 12]
+
