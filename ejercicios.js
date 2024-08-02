@@ -123,3 +123,55 @@ console.log(arrayMultiplos(2, 10)); // [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 console.log(arrayMultiplos(17, 6)); // [17, 34, 51, 68, 85, 102]
 console.log(arrayMultiplos(3, 4)); // [3, 6, 9, 12]
 
+/* === Positive dominance in Array ===
+ 
+Write a function to determine if an array is positively dominant.
+An array is positively dominant when the majority of its elements are positive.
+ 
+Example:
+- `positiveDom([-1, -3, -5, 4, 6767])` should return `false`.
+*/
+
+function positiveDom(arr){
+    let count = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > 0) {
+            count++;
+        }
+    }
+    return count > arr.length / 2;
+}
+
+//* Test cases
+console.log(positiveDom([-1, -3, -5, 4, 6767])) // false
+console.log(positiveDom([-1, 82, 38, 44, -57])) // true
+
+/* === Antipodal Average ===
+Given an array, return a shorter array following these steps:
+- Split the array into two equal parts*. If unequal, remove the middle element to obtain two equal arrays.
+- Sum each number of the first part with the inverse numbers of the second part.
+- Divide each number of the resulting array by 2.
+ 
+Example:
+- For the array `[1,2,3,5,22,6]`, the result should be `[3.5, 12, 4]`.
+*/
+function antipodalAverage(arr) {
+   
+    const half = Math.floor(arr.length / 2);
+    const firstPart = arr.slice(0, half); //This returns an array containing elements from index 0 up to the half
+    const secondPart = arr.slice(half); // This returns an array containing elements from index half to the end of the array
+  
+    if (arr.length % 2 !== 0) {
+      secondPart.pop();
+    }
+  
+    let result = [];
+    for (let i = 0; i < half; i++) {
+      result.push((firstPart[i] + secondPart[secondPart.length - 1 - i]) / 2);
+    }
+  
+    return result;
+  }
+  console.log(antipodalAverage([1, 2, 3, 5, 22, 6])); // [3.5, 12, 4]
+  console.log(antipodalAverage([1, 2, 3, 94])); // [47.5, 2.5]
+  
